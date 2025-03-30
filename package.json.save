@@ -1,0 +1,29 @@
+{
+    "name": "ai-fitness-trainer",
+    "version": "1.0.0",
+    "description": "AI fitness trainer using pose detection",
+    "main": "src/main.js",
+    "scripts": {
+      "start": "parcel public/index.html",
+      "build": "parcel build public/index.html",
+      "deploy": "vercel --prod"
+    },
+    "keywords": [
+      "fitness",
+      "ai",
+      "pose",
+      "detection",
+      "tensorflow"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@tensorflow-models/pose-detection": "^2.0.0",
+      "@tensorflow/tfjs": "^3.18.0"
+    },
+    "devDependencies": {
+      "parcel-bundler": "^1.12.5",
+      "vercel": "^28.0.0"
+    }
+  
+

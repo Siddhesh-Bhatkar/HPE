@@ -1,0 +1,10 @@
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{js}": ["@parcel/transformer-babel"],
+    "*.html": ["@parcel/transformer-posthtml"]
+  },
+  "packagers": {
+    "*.html": "@parcel/packager-html"
+  }
+}

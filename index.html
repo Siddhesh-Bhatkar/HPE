@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fitness Trainer</title>
+  <link rel="stylesheet" href="./public/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="AI-powered fitness trainer that analyzes your form using computer vision">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Fitness Trainer</h1>
+      <p class="tagline">Real-time form analysis and rep counting with computer vision</p>
+    </header>
+
+    <div id="app">
+      <div class="camera-container">
+        <!-- Video element for webcam input (hidden) -->
+        <video id="webcam" playsinline=""></video>
+        
+        <!-- Canvas for rendering the pose detection -->
+        <canvas id="canvas"></canvas>
+        
+        <!-- Stats display for exercise data -->
+        <div id="stats">
+          <div class="stats-header">
+            <h3>Exercise Stats</h3>
+            <div id="rep-counter">0 reps</div>
+          </div>
+          <div id="feedback-message">Select an exercise to begin</div>
+        </div>
+      </div>
+      
+      <div class="controls-section">
+        <button id="start-camera" class="primary-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+          Start Camera
+        </button>
+        
+        <div class="exercise-controls">
+          <h3>Choose an Exercise</h3>
+          <div class="button-group">
+            <button data-exercise="squat" class="exercise-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"></circle><path d="M12 8v7"></path><path d="M8 15h8"></path><path d="M9 19l3-4 3 4"></path></svg>
+              Squats
+            </button>
+            <button data-exercise="pushup" class="exercise-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2"></path><path d="M10 16c-1.1 0-2-.9-2-2V9"></path><path d="M1 12h10"></path><path d="M18 8c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2"></path><path d="M14 16c1.1 0 2-.9 2-2V9"></path><path d="M13 12h10"></path></svg>
+              Push-ups
+            </button>
+            <button data-exercise="plank" class="exercise-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v6"></path><path d="M4 10V4"></path><path d="M12 4v16"></path><path d="M20 10v10"></path></svg>
+              Plank
+            </button>
+            <button data-exercise="bicep" class="exercise-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4h-2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><path d="M4 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path><path d="M8 18l8-12"></path></svg>
+              Bicep Curls
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Instructions for users -->
+      <div class="instructions-section">
+        <div class="card">
+          <h3>How to use:</h3>
+          <ol>
+            <li>Click the "Start Camera" button</li>
+            <li>Allow camera access when prompted</li>
+            <li>Select an exercise from the controls</li>
+            <li>Position yourself so your full body is visible</li>
+            <li>Perform the exercise with proper form</li>
+          </ol>
+        </div>
+        
+        <div class="card">
+          <h3>Exercise Tips:</h3>
+          <ul>
+            <li><strong>Squats</strong> - Stand with feet shoulder-width apart, keep your back straight</li>
+            <li><strong>Push-ups</strong> - Position camera to see your side profile, maintain a straight body line</li>
+            <li><strong>Plank</strong> - Hold a straight body position, engage your core</li>
+            <li><strong>Bicep Curls</strong> - Lift weights or objects up and down, keep your elbows locked</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Powered by TensorFlow.js and PoseNet | <a href="#" id="privacy-link">Privacy Policy</a></p>
+    </footer>
+  </div>
+
+  <!-- Status notification -->
+  <div id="status" class="status-hidden">Initializing...</div>
+
+  <!-- Main application script -->
+  <script src="./src/main.js" type="module"></script>
+</body>
+</html>
